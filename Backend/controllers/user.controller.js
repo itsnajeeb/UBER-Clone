@@ -10,12 +10,8 @@ module.exports.registerUser = async (req, res, next) => {
     }
 
     const { fullname, email, password } = req.body;
-    //console.log(req.body);
 
-    //const hashedPassword = await userModel.hashedPassword(password)
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    //console.log("Password ", hashedPassword);
 
     const user = await userService.createUser({
         firstname: fullname.firstname,
@@ -44,6 +40,13 @@ module.exports.loginUser = async (req, res, next) => {
         return res.status(401).json({ errors: [{ msg: 'Invalid Password or Password' }] })
     }
     const token = user.generateAuthToken();
+
+    res.cookie('token',token);
+
     res.status(200).json({ token, user })
+}
+
+module.exports.getUserProfile = async (req, res, next) => {
+    res.status(200).json(req.user);
 }
 

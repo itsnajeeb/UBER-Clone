@@ -9,3 +9,11 @@ server.listen(port, () => {
     console.log(`Server running on PORT ${port}`);
 
 })
+
+// Graceful shutdown on nodemon restart
+
+process.on('SIGTERM', () => {
+    server.close(() => {
+        console.log('Process terminated');
+    });
+});
