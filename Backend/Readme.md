@@ -74,5 +74,17 @@ Requires a valid JWT token in the Authorization header: Authorization: Bearer <t
         - `lastname` : (string) user's lastname (minimun 3 character)
     -  `email` : (string) user's email address 
 
+## `/users/logout` Endpoint
+
+### Description
+Logout the current user and blacklist the token and provided in the cookie or headers
+
+### HTTP Method
+`GET`
+
+### Authentication
+Requires a valid JWT token in the Authorization header or cookie:
+
+
 
 
