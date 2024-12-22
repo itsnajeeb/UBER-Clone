@@ -86,5 +86,46 @@ Logout the current user and blacklist the token and provided in the cookie or he
 Requires a valid JWT token in the Authorization header or cookie:
 
 
+## `Captain` 
+
+
+## `/captains/register` Endpoint
+
+### Description 
+Registers a new captain by creating a captain account with the provided information.
+
+### HTTP Method
+`POST`
+
+### Request Body
+The request body should be in JSON format and include the following fields:
+- `fullname` : (object)
+    - `firstname`: (string, required) : Captain's firstname minimum 3 character. 
+    - `lastname` : (string,optional) : Captain's lastname.
+- `email` : (string,required) : Captain's email address (must be a valid email).
+- `password` : (string) : Captain's Password minimum 6 character.
+- `vehicle` : (object) : 
+    - `Color` : (string, required) : Vehicle Color ( minimum 3 character).
+    - `plate` : (string, required) : Vehicle plate number (minimum 3 character).
+    -  `capacity` : (number, required) : Vehicle Passenger Capacity (minimum 1 ).
+    - `vehicleType` : (string, required) : Type of vehicle (must be 'car', 'motorcycle' 'auto').
+
+### Example Response 
+- `captain` : (object)
+    - `fullname` : (object)
+        - `firstname`: (string, required) : Captain's firstname minimum 3 character. 
+        - `lastname` : (string,optional) : Captain's lastname.
+    - `email` : (string,required) : Captain's email address (must be a valid email).
+    - `password` : (string) : Captain's Password minimum 6 character.
+    - `vehicle` : (object) : 
+        - `Color` : (string, required) : Vehicle Color ( minimum 3 character).
+        - `plate` : (string, required) : Vehicle plate number (minimum 3 character).
+        -  `capacity` : (number, required) : Vehicle Passenger Capacity (minimum 1 ).
+        - `vehicleType` : (string, required) : Type of vehicle (must be 'car', 'motorcycle' 'auto').
+- `token` : (string) : JWT Token
+
+
+
+
 
 
