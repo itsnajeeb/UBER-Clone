@@ -150,5 +150,47 @@ The request body should be in JSON format and include the following fields:
         - `plate` : (string) : vehicle palte no.
         - `capacity` : (number) : vehicle passenger capacity
         - `vehicleType` : (string) : Type of Vehicle.
+    - `status` (String) : captain's status (Bydefault Inactive)
 - `token` : (String) : JWT Token
+
+### `/captains/profile` Endpoint
+
+### Description
+Retrieves the profile information of the currently authenticated captain.
+
+### HTTP Method
+`GET`
+
+### Authentication
+Requires a valid JWT token in the Authorization header: `Authorization: Bearer <token>`
+
+### Example Response 
+- `captain` : (Object)
+    - `fullname` : (Object)
+        - `firstname` : (string) : Captain's firstname 
+        - `lastname` : (string) : Captain's lastname
+    - `email` : (string) : captain's valid email address
+    - `password` : (string) : captain's login password
+    - `vehicle` : (Object).
+        - `color` : (string) : vehicle color
+        - `plate` : (string) : vehicle palte no.
+        - `capacity` : (number) : vehicle passenger capacity
+        - `vehicleType` : (string) : Type of Vehicle.
+    - `status` (String) : captain's status (Bydefault Inactive)
+
+### `/captain/logout` Endpoint
+
+### Description
+Logout the current captain and blacklist the token provided in cookie or headers.
+
+### HTTP Method
+`GET`
+
+### Authentication
+Requires a valid JWT token in the Authorization header or cookie.
+
+### Example Response
+- `message` (String) : Logout Successfully.
+
+
 
