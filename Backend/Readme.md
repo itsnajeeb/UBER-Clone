@@ -126,6 +126,29 @@ The request body should be in JSON format and include the following fields:
 
 
 
+### `/captains/login` Endpoint
+### Description
+Authenticates a captain using their email and password, returning a JWT token upon successful login.
 
+### HTTP Method
+`POST`
 
+### Request body
+The request body should be in JSON format and include the following fields:
+- `email` : (string, required) : Captain's email address (must be a valid email).
+- `password` : (string, required) : Captain's password (minimum 6 character).
+
+### Example Response
+- `captain` : (Object)
+    - `fullname` : (Object)
+        - `firstname` : (string) : Captain's firstname 
+        - `lastname` : (string) : Captain's lastname
+    - `email` : (string) : captain's valid email address
+    - `password` : (string) : captain's login password
+    - `vehicle` : (Object).
+        - `color` : (string) : vehicle color
+        - `plate` : (string) : vehicle palte no.
+        - `capacity` : (number) : vehicle passenger capacity
+        - `vehicleType` : (string) : Type of Vehicle.
+- `token` : (String) : JWT Token
 
