@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home'
 import UserLogin from './Pages/UserLogin'
@@ -7,6 +7,7 @@ import CaptainLogin from './Pages/CaptainLogin'
 import CaptainSignup from './Pages/CaptainSignup'
 
 const App = () => {
+
   return (
     <div>
       <Routes>
