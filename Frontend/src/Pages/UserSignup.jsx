@@ -1,24 +1,37 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { userDataContext } from '../context/UserContext'
 
 const UserSignup = () => {
+  const navigate = useNavigate();
+
   const [firstname, setFirstName] = useState('');
   const [lastname, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('')
-  const [userData, setUserData] = useState({});
-  const submiteHandler = (e) => {
+  
+  const {user, setUser} = React.useContext(userDataContext)
+
+  const submiteHandler = async (e) => {
 
     e.preventDefault();
-
-    setUserData({
-      fullName: {
+    const newUser = {
+      fullname: {
         firstname: firstname,
         lastname: lastname,
       },
       email: email,
       password: password
-    });
+    }
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
+    if (response === 201) {
+      const data = response.data;
+      console.log(data);
+      setUser(data.user);
+      localStorage.setItem('token',data.token)
+      navigate('/home')
+    }
 
     //console.log(userData);
 
@@ -72,10 +85,10 @@ const UserSignup = () => {
               onChange={(e) => {
                 setPassword(e.target.value)
               }}
-              className='bg-gray-200 py-3 rounded-sm w-full px-4 outline-none focus:border-green-400 placeholder:text-sm' placeholder='example@example.com' />
+              className='bg-gray-200 py-3 rounded-sm w-full px-4 outline-none focus:border-green-400 placeholder:text-sm' placeholder='Your Password' />
           </div>
 
-          <button className='bg-black text-base font-bold text-white w-full py-3 rounded-sm'>Login</button>
+          <button className='bg-black text-base font-bold text-white w-full py-3 rounded-sm'>Create Account</button>
         </form>
 
         <p className='text-center text-base mt-4'> Already have an account? <Link to='/login' className='text-blue-400'>Login here</Link></p>
